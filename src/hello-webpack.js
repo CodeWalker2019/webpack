@@ -1,4 +1,6 @@
 function helloWebpack() 
 {
-  console.log('Hello, Weback');
+  console.log('Hello, Webpack');
 }
+
+export default helloWebpack;
