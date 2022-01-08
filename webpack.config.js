@@ -11,5 +11,33 @@ module.exports = {
       app: path.resolve(__dirname, 'src/'),
     }
   },
-  mode: 'none'
+  mode: 'none',
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg)$/,
+        type: 'asset/source',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 3 * 1024
+          }
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }
+    ]
+  }
 }
