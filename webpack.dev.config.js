@@ -1,13 +1,11 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'index.[contenthash].js',
+    filename: 'index.js',
     path: path.resolve(__dirname, './dist')
   },
   resolve: {
@@ -15,7 +13,17 @@ module.exports = {
       app: path.resolve(__dirname, 'src/'),
     }
   },
-  mode: 'none',
+  mode: 'development',
+  devServer: {
+    port: 3000,
+    static: {
+      directory: path.resolve(__dirname, './dist'),
+    },
+    devMiddleware: {
+      index: 'index.html',
+      writeToDisk: true,
+    }
+  },
   module: {
     rules: [
       {
@@ -30,14 +38,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
         ]
       },
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           'sass-loader'
         ]
@@ -56,12 +64,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new TerserPlugin(),
-    new MiniCssExtractPlugin({ filename: 'index.[contenthash].css' }),
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
       title: 'Webpack App',
-      filename: 'index.[contenthash].html',
+      filename: 'index.html',
       meta: {
         description: 'Some description...'
       }
