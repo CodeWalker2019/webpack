@@ -1,3 +1,4 @@
-import helloWebpack from './hello-webpack';
+import HelloWebpackButton from 'app/hello-webpack-button';
 
-helloWebpack();
+const helloWebpackButton = new HelloWebpackButton();
+helloWebpackButton.render();
