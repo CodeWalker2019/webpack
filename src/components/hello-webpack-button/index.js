@@ -1,14 +1,18 @@
 import './index.scss';
 
-class HelloWebpackButton {
-  handleClick(parent) {
+class HelloWebpackButton 
+{
+
+  handleClick(parent) 
+  {
     const p = document.createElement('p');
     p.innerHTML = 'Hello, Webpack';
     p.classList.add('hello-webpack-text');
     parent.appendChild(p);
   }
 
-  render() {
+  render() 
+  {
     const button = document.createElement('button');
     const body = document.querySelector('body');
     button.innerHTML = 'Hello, Webpack';
